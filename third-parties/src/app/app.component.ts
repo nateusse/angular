@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DiagramService } from 'src/app/services/diagram.service';
+import { AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'third-parties';
+export class AppComponent implements AfterViewInit {
+  @ViewChild('zoneFlowChart') zoneFlowChart: ElementRef = new ElementRef('')
+
+  constructor(private diagramService: DiagramService) {}  
+
+  ngAfterViewInit(): void {
+    const el = this.zoneFlowChart.nativeElement
+    this.diagramService.calculateDimensions(el)
+  }
 }
