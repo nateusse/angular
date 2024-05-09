@@ -4,12 +4,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore , getFirestore} from '@angular/fire/firestore';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
+import { environment } from './environment';
 
 
-const firebaseConfig = {
-
-
-};
+const firebaseConfig = environment.firebaseConfig;
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(),
